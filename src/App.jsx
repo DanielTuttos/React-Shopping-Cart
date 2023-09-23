@@ -2,9 +2,9 @@ import { products as initialProducts } from './mocks/products.json';
 import { Products } from './components/Products.jsx';
 import { useState } from 'react';
 import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
-function App() {
-  const [products] = useState(initialProducts);
+function useFilters () {
 
   const [filters, setFilters] = useState({
     category: 'all',
@@ -19,13 +19,19 @@ function App() {
       );
     });
   };
+  return { filterProducts, setFilters }
+}
 
+function App() {
+  const [products] = useState(initialProducts);
+  const { filterProducts, setFilters } = useFilters()
   const filteredProducts = filterProducts(products);
 
   return (
     <>
       <Header changeFilters={setFilters} />
       <Products products={filteredProducts} />
+      <Footer></Footer>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useId } from 'react';
 import './Filters.css';
+
 export const Filters = ({ changeFilters }) => {
   const [minPrice, setMinPrice] = useState(0);
   const minPriceFilterId = useId()
@@ -23,7 +24,7 @@ export const Filters = ({ changeFilters }) => {
   return (
     <section className="filters">
       <div>
-        <label htmlFor="price">Precio a partir de: </label>
+        <label htmlFor={minPriceFilterId}>Precio a partir de: </label>
         <input
           id={minPriceFilterId}
           type="range"
